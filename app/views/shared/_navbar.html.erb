@@ -5,28 +5,32 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       <% if user_signed_in? %>
         <li class="nav-item">
-         <%= link_to 'Food List', root_path, class:"nav-item text-decoration-none" %>
+         <%= link_to 'Food List', root_path, class:"navbar-brand" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Public Recipes', root_path, class:"nav-item text-decoration-none" %>
+          <%= link_to 'Public Recipes', root_path, class:"navbar-brand" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'My Recipes', root_path, class:"nav-item text-decoration-none" %>
+          <%= link_to 'My Recipes', root_path, class:"navbar-brand" %>
         </li><li class="nav-item">
-         <%= link_to 'Inventories', root_path, class:"nav-item text-decoration-none" %>
+         <%= link_to 'Inventories', root_path, class:"navbar-brand" %>
         </li><li class="nav-item">
-         <%= link_to 'Shopping List', root_path, class:"nav-item text-decoration-none" %>
-        </li><li class="nav-item">
-         <%= link_to 'Sign In', root_path, class:"nav-item text-decoration-none" %>
+         <%= link_to 'Shopping List', root_path, class:"navbar-brand" %>
+        <li class="nav-item">
+         <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class:"navbar-brand" %>
+        </li>
+        <% else %>
+        <li class="nav-item">
+         <%= link_to 'Sign In', new_user_session_path, class:"navbar-brand" %>
+        </li>
         </li>
         <li class="nav-item">
-         <%= link_to 'Sign Out', root_path, class:"nav-item text-decoration-none" %>
+         <%= link_to 'Sign Up', new_user_registration_path, class:"navbar-brand" %>
         </li>
-        <li class="nav-item">
-         <%= link_to 'Sign Up', root_path, class:"nav-item text-decoration-none" %>
-        </li>
+        <% end %>
       </ul>
     </div>
   </div>
