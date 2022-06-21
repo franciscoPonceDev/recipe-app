@@ -14,13 +14,13 @@
           <%= link_to 'Public Recipes', root_path, class:"navbar-brand" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'My Recipes', root_path, class:"navbar-brand" %>
+          <%= link_to 'My Recipes', recipes_path, class:"navbar-brand" %>
         </li><li class="nav-item">
          <%= link_to 'Inventories', root_path, class:"navbar-brand" %>
         </li><li class="nav-item">
          <%= link_to 'Shopping List', root_path, class:"navbar-brand" %>
         <li class="nav-item">
-         <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class:"navbar-brand" %>
+         <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class:"btn btn-outline-light" %>
         </li>
         <% else %>
         <li class="nav-item">
