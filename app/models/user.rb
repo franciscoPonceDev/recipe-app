@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :inventories, dependent: :destroy
   has_many :foods, dependent: :destroy
-  has_many :recipe, dependent: :destroy
+  has_many :recipes, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }
 end
