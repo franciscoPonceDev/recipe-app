@@ -17,6 +17,8 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data'
+gem "bootstrap_form", "~> 5.0"
+
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
