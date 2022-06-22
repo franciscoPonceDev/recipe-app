@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :inventories, except: :update do
-    resources :inventory_foods, except: :update
+    get 'foods/new', to: 'inventory_foods#new'
+    post 'foods', to: 'inventory_foods#create'
+    delete 'foods/:id', to: 'inventory_foods#destroy', as: 'food'
   end
 
   match 'recipes/:recipe_id' => 'recipes#toogle_public', as: :toogle_public, via: :patch
