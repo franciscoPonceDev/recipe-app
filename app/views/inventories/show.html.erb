@@ -1,0 +1,40 @@
+<div class="d-flex flex-column mb-2 align-items-center">
+  <header class="d-flex">
+    <h1 class="mx-3">
+      <%= @inventory.name %>
+    </h1>
+    <%=
+      link_to "Add a food item", inventory_foods_new_path(@inventory.id),
+              class: "link-warning"
+    %>
+  </header>
+  <div class="d-flex flex-column mb-2 align-items-center">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @inventory.inventory_foods.each do |item| %>
+        <tr>
+          <td class="border px-4 py-2">
+            <%= item.food.name %>
+          </td>
+          <td class="border px-4 py-2">
+            <%= "#{item.quantity} #{item.food.measurement_unit}" %>
+          </td>
+          <td class="border px-4 py-2">
+            <%=
+              button_to "Delete", inventory_food_path(@inventory.id, item.id), method: :delete,
+                        class: "btn btn-outline-dark"
+            %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
