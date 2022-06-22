@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 gem 'bootsnap', require: false
+gem 'bootstrap_form', '~> 5.0'
 gem 'bullet'
 gem 'cancancan'
 gem 'devise'
@@ -17,8 +18,6 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data'
-gem "bootstrap_form", "~> 5.0"
-
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
