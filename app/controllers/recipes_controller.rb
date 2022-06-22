@@ -61,17 +61,17 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
     @recipe = Recipe.find_by_id(params[:id])
-    if @recipe.user == current_user
-      if @recipe.destroy
-        respond_to do |format|
-          format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-          format.json { head :no_content }
-        end
-      else
-        respond_to do |format|
-          format.html { redirect_to recipes_url, notice: 'Recipe was not destroyed.' }
-          format.json { head :no_content }
-        end
+    return unless @recipe.user == current_user
+
+    if @recipe.destroy
+      respond_to do |format|
+        format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to recipes_url, notice: 'Recipe was not destroyed.' }
+        format.json { head :no_content }
       end
     end
   end
