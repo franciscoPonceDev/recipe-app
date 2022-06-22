@@ -1,39 +1,42 @@
 class InventoriesController < ApplicationController
   def index
     @user = current_user
-    @inventories = @user.inventories unless @user.nil?
+    @inventories = Inventory.where(user_id: current_user.id)
   end
 
   def new
     @inventory = Inventory.new
   end
 
-  def show
-    @inventory = Inventory.find_by_id(params[:id])
-    @inventory_foods = InventoryFood.where(inventory_id: params[:inventory_id]).includes(:food)
-  end
-
   def create
-    @inventory = Inventory.new
-    @inventory.name = params[:inventory][:name]
-    @inventory.description = params[:inventory][:description]
-    @inventory.user_id = current_user.id
+    @user = current_user
+    @inventory = Inventory.new(inventory_params)
+    @inventory.user = @user
 
-    if @inventory.save
-      flash[:success] = 'Inventory successfully created.'
-      redirect_to inventories_path
-    else
-      p @inventory.errors.full_messages
-      flash[:error_title] = @inventory.errors.messages[:name][0]
-      flash[:error_comment] = @inventory.errors.messages[:description][0]
-      redirect_to new_inventory_path
+    respond_to do |format|
+      if @inventory.save
+        format.html { redirect_to inventories_path, notice: 'inventory was successfully created.' }
+        format.json { render :index, status: :created, location: @inventory }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    @inventory = Inventory.find(params[:inventory_id])
+    @inventory = Inventory.find(params[:id])
     @inventory.destroy
-    flash[:success] = 'Inventory successfully deleted'
-    redirect_to inventories_path
+
+    respond_to do |format|
+      format.html { redirect_to inventories_path, notice: 'Food was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def inventory_params
+    params.require(:inventory).permit(:name, :description, :user_id)
   end
 end
