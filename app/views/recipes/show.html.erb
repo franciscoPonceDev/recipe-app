@@ -1,0 +1,34 @@
+<h1 class="text-center"><%=  @recipe.name %></h1>
+<div class="card w-75 container">
+  <div class="card-body row align-items-between">
+    <div class="col col-md-6 ms-3">
+      <h4 class="fw-bold my-1">Preparation Time: <%= @recipe.preparation_time/60 %> hours <%= @recipe.preparation_time%60 %> minutes</h4>
+      <h4 class="fw-bold my-4">Cooking Time: <%= @recipe.cooking_time/60 %> hours <%= @recipe.cooking_time%60 %> minutes</h4>
+    </div>
+    <div class="col col-md-4 ms-auto">
+      <div class="d-flex justify-content-around form-check form-switch">
+        <p class="form-check-label" for="flexSwitchCheckChecked">Private</p>
+        <input class="form-check-input ms-1" type="checkbox" role="switch" id="flexSwitchCheckChecked" data-size="lg" checked>
+        <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
+      </div>
+      <p class="ms-5 fs-12 text-danger">Update CRUD is not implemented</p>
+    </div>
+  </div>
+  <div class="row card-body">
+    <div class="card-body col col-md-12">
+      <h4 class="fw-bold my-1">Description</h4>
+      <p class="fs-6">
+        <%= @recipe.description %>
+  </div>
+  <div class="row">
+    <div class="col col-md-6">
+    <% if user_signed_in? %>
+        <button type="button" class="btn btn-outline-dark">Generate Shopping List</button>
+      <% end %>
+    </div>
+    <div class="col col-md-6 ms-auto">
+      <% if @recipe.user == @current_user %>
+        <%= button_to "Add Ingredients", new_recipe_recipe_food_path(@recipe.id), class: "btn btn-outline-dark"%>
+      <% end %>
+    </div>
+</div>
