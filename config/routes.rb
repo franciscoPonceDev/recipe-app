@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :recipe_foods, path: 'food', only: [:destroy, :new, :create]
   end
 
+  resources :inventories, only: %i[index show new create destroy] do
+    resources :inventory_foods, except: %i[update]
+  end
+
   match 'recipes/:recipe_id' => 'recipes#toogle_public', as: :toogle_public, via: :patch
   match 'public_recipes' => 'recipes#public_recipes', as: :public_recipes, via: :get
 
