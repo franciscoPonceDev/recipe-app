@@ -28,7 +28,20 @@
     </div>
     <div class="col col-md-6 ms-auto">
       <% if @recipe.user == @current_user %>
-        <%= button_to "Add Ingredients", new_recipe_recipe_food_path(@recipe.id), class: "btn btn-outline-dark"%>
+        <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe.id), class: "btn btn-outline-dark"%>
       <% end %>
     </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Value</th>
+            <% if @recipe.user == current_user %>
+              <th scope="col">Action</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody><%= render partial:"recipe_food", collection: @recipe_foods %>
+        </table>
 </div>

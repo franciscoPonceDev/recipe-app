@@ -14,3 +14,6 @@ Recipe.create(name: "Pancakes", preparation_time: 150, cooking_time: 250, descri
 Recipe.create(name: "Sushi", preparation_time: 10, cooking_time: 20, description: "Sushi is a Japanese dish of raw fish, usually sashimi, that has been prepared in a variety of ways, including tempura, hand-rolling, and deep-frying.", public: true, user_id: 2)
 Recipe.create(name: "Spaghetti", preparation_time: 10, cooking_time: 20, description: "Spaghetti is a type of pasta, typically a flat, dry, thin, round, or roundish, made from an unleavened dough of durum wheat flour, or sometimes a dough of durum wheat flour mixed with water or eggs, and formed into sheets or strings.", public: false, user_id: 2)
 
+Food.create(name: "Tomato", measurement_unit: "kg", price: 10, user_id: 1)
+
+
