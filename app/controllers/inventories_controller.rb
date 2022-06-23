@@ -8,6 +8,10 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new
   end
 
+  def show
+    @inventory = current_user.inventories.find(params[:id])
+  end
+
   def create
     @user = current_user
     @inventory = Inventory.new(inventory_params)
