@@ -1,7 +1,7 @@
 <div class="d-flex flex-column mb-2 align-items-center">
-  <h1 class="text-center">All Recipes</h1>
+  <h1 class="my-3 text-center text-success">All Recipes</h1>
   <% if @recipes.empty? %>
-    <p class="text-center">No public recipes.</p>
+    <p class="text-center text-warning">No public recipes.</p>
   <% else %>
     <%= render partial: "shared/public_recipe", collection: @recipes %>
   <% end %>
