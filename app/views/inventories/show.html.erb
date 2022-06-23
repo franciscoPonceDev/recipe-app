@@ -1,28 +1,27 @@
 <div class="d-flex flex-column mb-2 align-items-center">
-  <div class="d-flex">
-    <h1 class="mx-3"><%= @inventory.name %></h1>
+  <div class="d-flex mb-2">
+    <h1 class="mx-3 text-success"><%= @inventory.name %></h1>
   </div>
-  <%= link_to 'Add Food', new_inventory_inventory_food_path(@inventory), class: "btn btn-outline-dark align-self-center my-3" %>
-  <div class="card w-50 my-2">
-    <table class="table table-striped">
-      <thead>
+  <%= link_to 'Add Food', new_inventory_inventory_food_path(@inventory), class: "btn btn-outline-success align-self-center my-3" %>
+  <table class="table table-success table-striped w-50 mt-3">
+    <thead>
+    <tr>
+      <th scope="col" class="text-success">Food</th>
+      <th scope="col" class="text-success">Quantity</th>
+      <th scope="col" class="text-success">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @inventory.inventory_foods.includes([:food]).each do |food| %>
       <tr>
-        <th scope="col">Food</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Actions</th>
+        <td class="text-success"><%= food.food.name %></td>
+        <td class="text-success"><%= "#{food.quantity} #{food.food.measurement_unit}" %></td>
+        <td class="text-success">
+          <%= button_to "Remove", inventory_inventory_food_path(@inventory, food), method: :delete, class: "btn btn-outline-danger" %>
+        </td>
       </tr>
-      </thead>
-      <tbody>
-      <% @inventory.inventory_foods.includes([:food]).each do |food| %>
-        <tr>
-          <td><%= food.food.name %></td>
-          <td><%= "#{food.quantity} #{food.food.measurement_unit}" %></td>
-          <td>
-            <%= button_to "Remove", inventory_inventory_food_path(@inventory, food), method: :delete, class: "btn btn-outline-dark" %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+    <% end %>
+    </tbody>
+  </table>
 </div>
+
