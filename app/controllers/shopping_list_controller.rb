@@ -1,14 +1,7 @@
 class ShoppingListController < ApplicationController
   def show
-    @selected_inventory = Inventory.find_by_id(params[:inventory_food][:inventory_id])
-    @selected_recipe = Recipe.find_by_id(params[:recipe_id])
-
-    @i_foods = InventoryFood.where(inventory_id: @selected_inventory.id).includes([:food])
-    @r_foods = RecipeFood.where(recipe_id: @selected_recipe.id).includes([:food])
-
-    @foods = []
-    @r_foods.each do |r_food|
-      @foods << Food.where(id: r_food.food_id)
-    end
+    @inventory = Inventory.find_by_id(params[:inventory_food][:inventory_id])
+    @recipe = Recipe.find_by_id(params[:recipe_id])
+    @foods = @recipe.foods.where_not_exists(:inventories, id: @inventory.id).select('foods.*, recipe_foods.quantity').where(recipe_foods: { recipe_id: @recipe.id })
   end
 end
