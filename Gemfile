@@ -5,6 +5,7 @@ ruby '3.1.2'
 gem 'bootsnap', require: false
 gem 'bootstrap_form', '~> 5.0'
 gem 'bullet'
+gem 'byebug', '~> 9.0', '>= 9.0.5'
 gem 'cancancan'
 gem 'devise'
 gem 'ffi', '~> 1.9'
@@ -17,6 +18,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data'
+gem 'where_exists'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]

@@ -58,16 +58,6 @@ class FoodsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @food = Food.find(params[:id])
-  #   if @food.destroy
-  #     flash.now[:success] = 'Food deleted successfully.'
-  #   else
-  #     flash.now[:error] = 'Food could not be deleted.'
-  #   end
-  #   redirect_to foods_path
-  # end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'recipe_foods/new'
   resources :foods
+  resources :shopping_list, only: [:show]
+  post '/shopping_list/:recipe_id', to: 'shopping_list#show', as: 'shopping_show'
   devise_for :users
 
   resources :recipes, only: [:index, :show, :new, :create, :destroy, :put ] do
