@@ -8,6 +8,10 @@ The Recipe app keeps track of all your recipes, ingredients, and inventory. It w
 
 - Ruby on Rails
 
+## Live demo
+
+[Live demo](https://infinite-ravine-17811.herokuapp.com/)
+
 ## Getting Started
 
 ### Prerequisites
